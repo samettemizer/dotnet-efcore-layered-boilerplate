@@ -16,8 +16,8 @@ jobs:
       with:
         host: ${{ secrets.IP_ADDRESS }}
         username: ${{ secrets.IP_USER_NAME }}
-        #password: ${{ secrets.IP_PASSWORD }}
-        key: ${{ secrets.SSH_KEY }}
+        password: ${{ secrets.IP_PASSWORD }}
+        #key: ${{ secrets.SSH_KEY }}
         port: ${{ secrets.PORT }}
         script: |
           cd /var/www/aamet-api/project
