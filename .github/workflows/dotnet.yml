@@ -17,6 +17,7 @@ jobs:
         host: ${{ secrets.IP_ADDRESS }}
         username: ${{ secrets.IP_USER_NAME }}
         password: ${{ secrets.IP_PASSWORD }}
+        ssh-key: ${{ secrets.SSH_KEY }}
         script: |
           cd /var/www/aamet-api/project
           git reset --hard origin/production
