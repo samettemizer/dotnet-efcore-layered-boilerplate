@@ -1,0 +1,30 @@
+name: .NET
+
+on:
+  push:
+    branches: [ production ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    
+    - name: Setup .NET WebAPI to Server
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.IP_ADDRESS }}
+        username: ${{ secrets.IP_USER_NAME }}
+        password: ${{ secrets.IP_PASSWORD }}
+        script: |
+          cd /var/www/aamet-api/project
+          git reset --hard origin/production
+          git pull origin production
+          cd /var/www/aamet-api/project/src/TaTava.Web.Host
+          dotnet restore
+          dotnet test --no-build --verbosity normal
+          dotnet publish -r linux-x64
+          rm -rf /var/www/aamet-api/public_html/*
+          mv /var/www/aamet-api/project/src/TaTava.Web.Host/bin/Debug/net5.0/linux-x64/publish/* /var/www/aamet-api/public_html
+          systemctl restart dogukan-app.service
