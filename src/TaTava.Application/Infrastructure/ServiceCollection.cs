@@ -18,6 +18,10 @@ using TaTava.Content.Tags;
 using TaTava.Content.PostsTags;
 using TaTava.Menus;
 using TaTava.Sliders;
+using TaTava.Firmalar.Sektorler;
+using TaTava.Application.Firmalar.Sektorler;
+using TaTava.Urunler;
+using TaTava.Firmalar;
 
 namespace TaTava.Application.Infrastructure
 {
@@ -36,6 +40,10 @@ namespace TaTava.Application.Infrastructure
             services.AddTransient<IPostTagAppService, PostTagAppService>();
             services.AddTransient<IMenuAppService, MenuAppService>();
             services.AddTransient<ISliderAppService, SliderAppService>();
+            services.AddTransient<ISektorAppService, SektorAppService>();
+            services.AddTransient<IUrunAppService, UrunAppService>();
+            services.AddTransient<IFirmaAppService, FirmaAppService>();
+
 
             services.AddScoped<IEncryption, Encryption>();
 
@@ -58,8 +66,8 @@ namespace TaTava.Application.Infrastructure
         public static void RegisterApplicationRequirements(this IServiceCollection services)
         {
             services.AddScoped<IUnitOfWork, SqlUnitOfWork>();
-            services.AddScoped(typeof(IRepository<>), typeof(SqlRepository<>)); 
-            services.AddScoped(typeof(IRepository<,>), typeof(SqlRepository<,>)); 
+            services.AddScoped(typeof(IRepository<>), typeof(SqlRepository<>));
+            services.AddScoped(typeof(IRepository<,>), typeof(SqlRepository<,>));
 
             services.RegisterApplicationServices();
             services.RegisterApplicationPolicies();

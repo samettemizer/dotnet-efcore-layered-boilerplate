@@ -20,6 +20,11 @@ namespace TaTava.Web.Startup
         public static IWebHostBuilder CreateWebHostBuilder(string[] args)
         {
             return new WebHostBuilder()
+                .ConfigureLogging(logging =>
+                {
+                    logging.ClearProviders();
+                    logging.AddConsole();
+                })
                 .UseKestrel(opt =>
                 {
                     opt.AddServerHeader = false;

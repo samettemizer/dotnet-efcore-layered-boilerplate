@@ -3,6 +3,7 @@ using TaTava.Entities;
 using TaTava.Policies;
 using System.Collections.Generic;
 using TaTava.Firmalar.FirmaUrunleri;
+using TaTava.Firmalar.Sektorler;
 
 namespace TaTava.Urunler
 {
@@ -24,8 +25,9 @@ namespace TaTava.Urunler
         #region - Navigation Properties
 
         public short UrunKategoriId { get; set; }
-
         public UrunKategori UrunKategori { get; set; }
+
+        public short SektorId { get; set; }
 
         #endregion
 

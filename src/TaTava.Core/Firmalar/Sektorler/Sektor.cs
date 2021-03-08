@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using TaTava.Entities.Audited;
 using TaTava.Policies;
+using TaTava.Urunler;
 
 namespace TaTava.Firmalar.Sektorler
 {

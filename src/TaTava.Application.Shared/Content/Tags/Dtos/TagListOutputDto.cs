@@ -7,7 +7,7 @@ using TaTava.Application.Shared.Dtos;
 
 namespace TaTava.Content.Tags.Dtos
 {
-    public class TagListOutputDto:EntityDto<Guid>
+    public class TagListOutputDto : EntityDto<Guid>
     {
         #region Properties
         public string Title { get; set; }

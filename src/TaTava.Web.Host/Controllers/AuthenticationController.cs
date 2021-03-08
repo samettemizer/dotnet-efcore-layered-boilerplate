@@ -8,6 +8,7 @@ using TaTava.Authentication;
 using TaTava.Authentication.JwtBearer;
 using TaTava.Authentications.Users.Dtos;
 using TaTava.CommonTypes;
+using TaTava.Firmalar;
 using TaTava.Infrastructure;
 using TaTava.Mapper.Authorization;
 
@@ -16,20 +17,16 @@ namespace TaTava.Web.Host.Controllers
     public class AuthenticationController : BaseApiController
     {
         private readonly IAuthenticationAppService _authenticationService;
+        private readonly IFirmaAppService _firmaService;
         private readonly IJwtGenerator _jwtGenerator;
 
-        public AuthenticationController(IAuthenticationAppService authenticationService, IJwtGenerator jwtGenerator)
+        public AuthenticationController(IAuthenticationAppService authenticationService, IFirmaAppService firmaService, IJwtGenerator jwtGenerator)
         {
             _authenticationService = authenticationService;
+            _firmaService = firmaService;
             _jwtGenerator = jwtGenerator;
         }
 
-        
-        /// <summary>
-        /// This is what it is!
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
         [AllowAnonymous]
         [HttpPost("login")]
         public async Task<ServiceResult<LoggedinUserOutput>> Login(LoginInput input)
@@ -102,6 +99,13 @@ namespace TaTava.Web.Host.Controllers
             }
 
 
+        }
+
+
+        [HttpPost]
+        public ServiceResult<LoggedinUserOutput> LoginAsFirma(int firmaId, Guid firmaYetkiliId)
+        {
+            return null;
         }
     }
 }

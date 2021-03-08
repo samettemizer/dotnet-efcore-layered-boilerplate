@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using TaTava.Authorization.Users;
 using TaTava.Entities;
 using TaTava.Firmalar.FirmaUrunleri;
 using TaTava.Firmalar.Sektorler;
@@ -44,6 +46,9 @@ namespace TaTava.Firmalar
 
         public short SektorId { get; private set; }
         public Sektor Sektor { get; set; }
+
+        public Guid? FirmaYetkiliKullaniciId { get; set; }
+        public User FirmaYetkiliKullanici { get; set; }
 
         public ICollection<FirmaUrun> FirmaUrunleri { get; set; }
 

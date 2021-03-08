@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaTava.EntityFrameworkCore;
 
 namespace TaTava.EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(TaTavaDbContext))]
-    partial class TaTavaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210306175949_UstKategoriId_Property_Became_Nullable")]
+    partial class UstKategoriId_Property_Became_Nullable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -463,9 +465,6 @@ namespace TaTava.EntityFrameworkCore.Migrations
                     b.Property<string>("Faks")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("FirmaYetkiliKullaniciId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("GoogleHarita")
                         .HasColumnType("nvarchar(max)");
 
@@ -503,8 +502,6 @@ namespace TaTava.EntityFrameworkCore.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("FirmaYetkiliKullaniciId");
 
                     b.HasIndex("IlId");
 
@@ -1026,10 +1023,6 @@ namespace TaTava.EntityFrameworkCore.Migrations
 
             modelBuilder.Entity("TaTava.Firmalar.Firma", b =>
                 {
-                    b.HasOne("TaTava.Authorization.Users.User", "FirmaYetkiliKullanici")
-                        .WithMany()
-                        .HasForeignKey("FirmaYetkiliKullaniciId");
-
                     b.HasOne("TaTava.Lokasyonlar.Iller.Il", "Il")
                         .WithMany()
                         .HasForeignKey("IlId")

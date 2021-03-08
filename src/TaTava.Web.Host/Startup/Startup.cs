@@ -79,10 +79,6 @@ namespace TaTava.Web.Startup
                      }
                 });
 
-                // var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                // var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                // options.IncludeXmlComments(xmlPath);
-
             }).AddSwaggerGenNewtonsoftSupport();
 
             services.AddControllers()
@@ -121,7 +117,7 @@ namespace TaTava.Web.Startup
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
 
             app.UseRouting();
 

@@ -11,6 +11,8 @@ using TaTava.Authentications.Users.Dtos;
 using Microsoft.Extensions.Configuration;
 using TaTava.Core.Security;
 using TaTava.Mapper.Authorization;
+using TaTava.Firmalar;
+using TaTava.Application.Firmalar;
 
 namespace TaTava.Authentication
 {
@@ -19,24 +21,21 @@ namespace TaTava.Authentication
         private readonly IUnitOfWork _unitOfWork;
         private readonly IRepository<UserAccount, Guid> _userAccountRepository;
         private readonly IRepository<User, Guid> _userRepository;
+        private readonly IRepository<Firma, int> _firmaRepository;
         private readonly UserAccountPolicy _userAccountPolicy;
         private readonly IEncryption _encryption;
         private readonly IConfiguration _config;
 
-        public AuthenticationAppService(IUnitOfWork unitOfWork, IRepository<UserAccount, Guid> userAccountRepository, IRepository<User, Guid> userRepository, UserAccountPolicy userAccountPolicy, IEncryption encryption, IConfiguration config)
+        public AuthenticationAppService(IUnitOfWork unitOfWork, IRepository<UserAccount, Guid> userAccountRepository, IRepository<User, Guid> userRepository, IRepository<Firma, int> firmaRepository, UserAccountPolicy userAccountPolicy, IEncryption encryption, IConfiguration config)
         {
             _unitOfWork = unitOfWork;
             _userAccountRepository = userAccountRepository;
             _userRepository = userRepository;
+            _firmaRepository = firmaRepository;
             _userAccountPolicy = userAccountPolicy;
             _encryption = encryption;
 
             _config = config;
-        }
-
-        public Task<ServiceResult<LoggedinUserOutput>> LoggedInUser(string token)
-        {
-            throw new NotImplementedException();
         }
 
         public async Task<ServiceResult<LoggedinUserOutput>> Login(LoginInput input)
@@ -55,6 +54,13 @@ namespace TaTava.Authentication
             var userFromUserAccountId = await _userRepository.GetAsync(user => user.UserAccountId == userAccount.Id);
 
             var userLoggedInOutput = userFromUserAccountId.ToUserLoggedInOutput();
+
+            var usersFirma = await _firmaRepository.GetAsync(firma => firma.FirmaYetkiliKullaniciId == userFromUserAccountId.Id);
+
+            if (usersFirma is not null)
+            {
+                userLoggedInOutput.Firma = usersFirma.ToFirmaOutputDto();
+            }
 
             return new ServiceResult<LoggedinUserOutput>(Status.Success)
             {
@@ -91,7 +97,7 @@ namespace TaTava.Authentication
             }
 
         }
-    
+
         //TODO: Reset Password endpoint should be done.
     }
 }

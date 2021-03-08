@@ -20,7 +20,7 @@ namespace TaTava.Urunler.UrunKategorileri
 
         #region - Navigation Properties
 
-        public short UstKategoryId { get; set; }
+        public short? UstKategoryId { get; set; }
 
 
         public ICollection<Urun> Urunler { get; set; }

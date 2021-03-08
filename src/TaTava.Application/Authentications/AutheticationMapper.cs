@@ -12,12 +12,33 @@ namespace TaTava.Mapper.Authorization
     {
         public static List<Claim> ToUserLoggedInOutputClaims(this LoggedinUserOutput userLoggedInOutput)
         {
-            return new List<Claim>()
+            var userClaims = new List<Claim>()
                 {
                     new Claim("Id", userLoggedInOutput.Id.ToString()),
                     new Claim("firstName", userLoggedInOutput.FirstName),
                     new Claim("lastName", userLoggedInOutput.LastName)
                 };
+
+            if (userLoggedInOutput.Firma is not null)
+            {
+                userClaims.AddRange(new List<Claim>()
+                {
+                    new Claim("firmaId", userLoggedInOutput.Firma.Id.ToString()),
+                    new Claim("unvan", userLoggedInOutput.Firma.Unvan),
+                    new Claim("yetkiliAd", userLoggedInOutput.Firma.YetkiliAd),
+                    new Claim("yetkiliSoyad", userLoggedInOutput.Firma.YetkiliSoyad),
+                    new Claim("telefon", userLoggedInOutput.Firma.Telefon),
+                    new Claim("mobileTelefon", userLoggedInOutput.Firma.MobilTelefon),
+                    new Claim("gaks", userLoggedInOutput.Firma.Faks),
+                    new Claim("adres", userLoggedInOutput.Firma.Adres),
+                    new Claim("googleHarita", userLoggedInOutput.Firma.GoogleHarita),
+                    new Claim("ilId", userLoggedInOutput.Firma.IlId.ToString()),
+                    new Claim("ilceId", userLoggedInOutput.Firma.IlceId.ToString()),
+                    new Claim("sektorId", userLoggedInOutput.Firma.SektorId.ToString()),
+                });
+            }
+
+            return userClaims;
         }
 
         public static UserAccount ToUserAccountEntity(this RegisterInput input)
