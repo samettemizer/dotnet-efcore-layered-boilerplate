@@ -12,7 +12,7 @@ namespace TaTava.Authorization.Users
     public interface IUserAppService : IApplicationService
     {
         Task<ServiceResult<IQueryable<UserListOutput>>> GetUsers();
-        Task<ServiceResult> InsertUser(InsertUserInput input);
+        Task<ServiceResult<UserOutput>> InsertUser(InsertUserInput input);
         Task<ServiceResult<UserOutput>> GetUserById(EntityDto<Guid> input);
         Task<ServiceResult> UpdateUser(UpdateUserInput input);
         Task<ServiceResult> DeleteUserById(EntityDto<Guid> input);

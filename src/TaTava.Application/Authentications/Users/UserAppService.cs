@@ -89,29 +89,35 @@ namespace TaTava.Authorization.Users
             };
         }
 
-        public async Task<ServiceResult> InsertUser(InsertUserInput input)
+        public async Task<ServiceResult<UserOutput>> InsertUser(InsertUserInput input)
         {
             try
             {
                 using (var transaction = _unitOfWork.BeginTransaction())
                 {
+                    
                     var userAccountId = await GetService<IUserAccountAppService>().InserUserAccountAndReturnId(input.UserAccount);
 
                     if (userAccountId.IsFailed)
-                        return userAccountId;
+                        return new ServiceResult<UserOutput>(userAccountId.Status)
+                        {
+                            Message = userAccountId.Message
+                        };
 
-                    await _userRepository.InsertAsync(input.ToUserEntity(userAccountId.Object));
+                    var userEntity = input.ToUserEntity(userAccountId.Object);
+                    await _userRepository.InsertAsync(userEntity);
 
                     _unitOfWork.SaveChanges();
 
                     transaction.Commit();
+
+                    return new ServiceResult<UserOutput>(Status.Success) { Message = "Kullanıcı kaydı başarılı.", Object = userEntity.ToUserOutput() };
                 }
 
-                return new ServiceResult(Status.Success) { Message = "Kullanıcı kaydı başarılı." };
             }
             catch (Exception e)
             {
-                return new ServiceResult(Status.Error) { Message = string.Format("Kullanıcı kaydı sırasında bir hata oluştu. Sebebi; {0}", e.Message) };
+                return new ServiceResult<UserOutput>(Status.Error) { Message = string.Format("Kullanıcı kaydı sırasında bir hata oluştu. Sebebi; {0}", e.Message) };
             }
         }
 

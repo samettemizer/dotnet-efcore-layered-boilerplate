@@ -13,5 +13,11 @@ namespace TaTava.Authorization.Users.Dtos
         public string Address { get; set; }
 
         #endregion
+
+        #region - Navigation Properties
+
+        public Guid UserAccountId { get; set; }
+
+        #endregion
     }
 }

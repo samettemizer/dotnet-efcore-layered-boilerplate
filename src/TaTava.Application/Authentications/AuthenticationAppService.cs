@@ -99,5 +99,6 @@ namespace TaTava.Authentication
         }
 
         //TODO: Reset Password endpoint should be done.
+        
     }
 }
