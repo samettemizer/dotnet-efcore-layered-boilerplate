@@ -20,6 +20,6 @@ namespace TaTava.Firmalar.Dtos
 
         public string SirketEposta { get; set; }
         public string SirketParola { get; set; }
-        public Guid FirmaYetkiliKullaniciId { get; set; }
+        public Guid? FirmaYetkiliKullaniciId { get; set; }
     }
 }
