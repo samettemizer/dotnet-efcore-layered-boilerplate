@@ -31,7 +31,7 @@ namespace TaTava.Mapper.Authorization
                     new Claim("mobileTelefon", userLoggedInOutput.Firma.MobilTelefon),
                     new Claim("gaks", userLoggedInOutput.Firma.Faks),
                     new Claim("adres", userLoggedInOutput.Firma.Adres),
-                    new Claim("googleHarita", userLoggedInOutput.Firma.GoogleHarita),
+                    new Claim("googleHarita", userLoggedInOutput.Firma.GoogleHarita?.ToString()),
                     new Claim("ilId", userLoggedInOutput.Firma.IlId.ToString()),
                     new Claim("ilceId", userLoggedInOutput.Firma.IlceId.ToString()),
                     new Claim("sektorId", userLoggedInOutput.Firma.SektorId.ToString()),

@@ -61,7 +61,7 @@ namespace TaTava.Firmalar
 
                     var firmaEntity = input.ToFirmaEntity();
                     firmaEntity.FirmaYetkiliKullaniciId = sirketYetkilisi.Object.Id;
-                    
+
                     await _firmaRepository.InsertAsync(firmaEntity);
 
                     _unitOfWork.SaveChanges();

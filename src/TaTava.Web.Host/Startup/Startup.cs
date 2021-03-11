@@ -45,7 +45,7 @@ namespace TaTava.Web.Startup
 
             services.AddRegisterApplication();
 
-            services.AddCors();
+            services.AddCors(x => x.AddDefaultPolicy(x => x.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod()));
 
             services.AddSwaggerGen(options =>
             {
@@ -117,7 +117,7 @@ namespace TaTava.Web.Startup
                 app.UseDeveloperExceptionPage();
             }
 
-            // app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
 
             app.UseRouting();
 
