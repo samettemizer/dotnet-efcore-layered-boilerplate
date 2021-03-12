@@ -22,6 +22,8 @@ using TaTava.Firmalar.Sektorler;
 using TaTava.Application.Firmalar.Sektorler;
 using TaTava.Urunler;
 using TaTava.Firmalar;
+using TaTava.Firmalar.Teklifler;
+using TaTava.Firmalar.TeklifDetaylari;
 
 namespace TaTava.Application.Infrastructure
 {
@@ -43,6 +45,9 @@ namespace TaTava.Application.Infrastructure
             services.AddTransient<ISektorAppService, SektorAppService>();
             services.AddTransient<IUrunAppService, UrunAppService>();
             services.AddTransient<IFirmaAppService, FirmaAppService>();
+            services.AddTransient<ITeklifAppService, TeklifAppService>();
+            services.AddTransient<ITeklifDetayAppService, TeklifDetayAppService>();
+
 
 
             services.AddScoped<IEncryption, Encryption>();

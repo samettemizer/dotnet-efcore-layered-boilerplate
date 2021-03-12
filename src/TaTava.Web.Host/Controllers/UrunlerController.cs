@@ -17,7 +17,7 @@ namespace TaTava.Web.Host.Controllers
         }
 
         [HttpGet]
-        public async Task<ServiceResult<IQueryable<UrunListOutputDto>>> Get(GetAllUrunInput input)
+        public async Task<ServiceResult<IQueryable<UrunListOutputDto>>> Get([FromQuery]GetAllUrunInput input)
         {
             return await _urunlerAppService.Urunler(input);
         }

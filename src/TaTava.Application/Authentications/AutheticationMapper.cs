@@ -29,7 +29,7 @@ namespace TaTava.Mapper.Authorization
                     new Claim("yetkiliSoyad", userLoggedInOutput.Firma.YetkiliSoyad),
                     new Claim("telefon", userLoggedInOutput.Firma.Telefon),
                     new Claim("mobileTelefon", userLoggedInOutput.Firma.MobilTelefon),
-                    new Claim("gaks", userLoggedInOutput.Firma.Faks),
+                    new Claim("faks", userLoggedInOutput.Firma.Faks),
                     new Claim("adres", userLoggedInOutput.Firma.Adres),
                     new Claim("googleHarita", userLoggedInOutput.Firma.GoogleHarita?.ToString()),
                     new Claim("ilId", userLoggedInOutput.Firma.IlId.ToString()),
@@ -64,6 +64,20 @@ namespace TaTava.Mapper.Authorization
                 Id = new Guid(tokenClaims.FirstOrDefault(claim => claim.Type == "Id").Value),
                 FirstName = tokenClaims.FirstOrDefault(claim => claim.Type == "firstName").Value,
                 LastName = tokenClaims.FirstOrDefault(claim => claim.Type == "lastName").Value,
+                Firma = new()
+                {
+                    Unvan = tokenClaims.FirstOrDefault(claim => claim.Type == "adres")?.Value,
+                    YetkiliAd = tokenClaims.FirstOrDefault(claim => claim.Type == "yetkiliAd")?.Value,
+                    YetkiliSoyad = tokenClaims.FirstOrDefault(claim => claim.Type == "yetkiliSoyad")?.Value,
+                    Telefon = tokenClaims.FirstOrDefault(claim => claim.Type == "telefon")?.Value,
+                    MobilTelefon = tokenClaims.FirstOrDefault(claim => claim.Type == "mobileTelefon")?.Value,
+                    Faks = tokenClaims.FirstOrDefault(claim => claim.Type == "faks")?.Value,
+                    Adres = tokenClaims.FirstOrDefault(claim => claim.Type == "adres")?.Value,
+                    GoogleHarita = tokenClaims.FirstOrDefault(claim => claim.Type == "googleHarita")?.Value,
+                    IlId = !string.IsNullOrEmpty(tokenClaims.FirstOrDefault(claim => claim.Type == "ilId")?.Value) ? Convert.ToInt16(tokenClaims.FirstOrDefault(claim => claim.Type == "ilId")?.Value) : 1,
+                    IlceId = !string.IsNullOrEmpty(tokenClaims.FirstOrDefault(claim => claim.Type == "ilceId")?.Value) ? Convert.ToInt16(tokenClaims.FirstOrDefault(claim => claim.Type == "ilceId")?.Value) : 1,
+                    SektorId = !string.IsNullOrEmpty(tokenClaims.FirstOrDefault(claim => claim.Type == "sektorId")?.Value) ? Convert.ToInt16(tokenClaims.FirstOrDefault(claim => claim.Type == "sektorId")?.Value) : 3,
+                },
                 Token = token
             };
         }

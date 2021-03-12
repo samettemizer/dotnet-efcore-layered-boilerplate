@@ -95,7 +95,7 @@ namespace TaTava.Authorization.Users
             {
                 using (var transaction = _unitOfWork.BeginTransaction())
                 {
-                    
+
                     var userAccountId = await GetService<IUserAccountAppService>().InserUserAccountAndReturnId(input.UserAccount);
 
                     if (userAccountId.IsFailed)

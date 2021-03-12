@@ -5,10 +5,10 @@ namespace TaTava.Firmalar.FirmaUrunleri
 {
     public class FirmaUrun : FullAuditedEntity<int>
     {
+
         #region - Properties
 
         public decimal Fiyat { get; set; }
-
         public decimal Kdv { get; set; }
 
         #endregion
@@ -22,5 +22,6 @@ namespace TaTava.Firmalar.FirmaUrunleri
         public Urun Urun { get; set; }
 
         #endregion
+        
     }
 }

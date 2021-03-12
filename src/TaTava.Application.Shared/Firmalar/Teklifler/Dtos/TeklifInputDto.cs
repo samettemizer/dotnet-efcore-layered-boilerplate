@@ -1,7 +1,7 @@
 using System;
 using TaTava.Application.Shared.Dtos;
 
-namespace TaTava.Application.Shared.Firmalar.Teklifler.Dtos
+namespace TaTava.Firmalar.Teklifler.Dtos
 {
     public class TeklifInputDto : EntityDto<int>
     {
