@@ -28,6 +28,8 @@ namespace TaTava.EntityFrameworkCore.Extensions
             modelBuilder.ApplyConfiguration(new PostTagConfiguration());
             modelBuilder.ApplyConfiguration(new MenuConfiguration());
             modelBuilder.ApplyConfiguration(new SliderConfiguration());
+            modelBuilder.ApplyConfiguration(new UrunOzellikConfiguration());
+            modelBuilder.ApplyConfiguration(new FirmaOzellikUrunConfiguration());
             
 
             #endregion

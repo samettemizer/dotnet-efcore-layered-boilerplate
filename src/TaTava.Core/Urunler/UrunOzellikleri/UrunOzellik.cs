@@ -14,14 +14,9 @@ namespace TaTava.Urunler.UrunOzellikleri
 
         public string OzellikAdi { get; private set; }
 
-        public byte OzellikTuru { get; set; }
-
         #endregion
 
         #region - Navigation Properties
-
-
-
         #endregion
 
         #region - Domain Methods

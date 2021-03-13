@@ -1,17 +1,11 @@
-using TaTava.Entities;
+using TaTava.Application.Shared.Dtos;
 using TaTava.Firmalar.FirmaUrunOzellik;
-using TaTava.Urunler;
 using TaTava.Urunler.UrunOzellikleri;
 
-namespace TaTava.Firmalar.FirmaUrunOzellikleri
+namespace TaTava.Firmalar.FirmaUrunOzellikleri.Dtos
 {
-    public class FirmaUrunOzellik : FullAuditedEntity<long>
+    public class FirmaUrunOzellikListOutputDto : EntityDto<long>
     {
-        public FirmaUrunOzellik()
-        {
-
-        }
-
         #region - Properties
 
         public FirmaUrunOzellikTypes OzellikTuru { get; set; }
@@ -23,17 +17,12 @@ namespace TaTava.Firmalar.FirmaUrunOzellikleri
         #region - Navigation Properties
 
         public int UrunId { get; set; }
-        public Urun Urun { get; set; }
 
         public int UrunOzellikId { get; set; }
-        public UrunOzellik UrunOzellik { get; set; }
+        public UrunOzellikOutputDto UrunOzellik { get; set; }
 
         public int FirmaId { get; set; }
-        public Firma Firma { get; set; }
 
-        #endregion
-
-        #region - Domain Methods
         #endregion
     }
 }

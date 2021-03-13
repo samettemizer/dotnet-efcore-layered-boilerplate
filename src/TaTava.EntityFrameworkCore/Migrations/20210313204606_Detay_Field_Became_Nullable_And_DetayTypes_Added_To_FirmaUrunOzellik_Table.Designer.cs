@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaTava.EntityFrameworkCore;
 
 namespace TaTava.EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(TaTavaDbContext))]
-    partial class TaTavaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210313204606_Detay_Field_Became_Nullable_And_DetayTypes_Added_To_FirmaUrunOzellik_Table")]
+    partial class Detay_Field_Became_Nullable_And_DetayTypes_Added_To_FirmaUrunOzellik_Table
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

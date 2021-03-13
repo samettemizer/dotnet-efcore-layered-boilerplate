@@ -59,13 +59,14 @@ namespace TaTava.Firmalar.Teklifler
                     var teklifEntity = input.ToTeklifEntity();
                     await _teklifRepository.InsertAsync(teklifEntity);
 
+                    _unitOfWork.SaveChanges();
+
                     var teklifDetayAppService = GetService<ITeklifDetayAppService>();
                     for (int i = 0; i < totalDetay; i++)
                     {
-                        await teklifDetayAppService.TeklifDetayEkle(new TeklifDetayInputDto { FirmaUrunId = 1, TeklifId = teklifEntity.Id, Adet = 1, Birim = Birim.M2, Fiyat = detayFiyati, Tutar = detayFiyati });
+                        var teklifDetay = await teklifDetayAppService.TeklifDetayEkle(new TeklifDetayInputDto { FirmaUrunId = 1, TeklifId = teklifEntity.Id, Adet = 1, Birim = Birim.M2, Fiyat = detayFiyati, Tutar = detayFiyati });
                     }
 
-                    _unitOfWork.SaveChanges();
 
                     transaction.Commit();
 

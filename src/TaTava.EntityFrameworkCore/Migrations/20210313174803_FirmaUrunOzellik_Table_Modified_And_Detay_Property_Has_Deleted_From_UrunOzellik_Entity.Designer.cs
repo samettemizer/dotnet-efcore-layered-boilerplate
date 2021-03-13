@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaTava.EntityFrameworkCore;
 
 namespace TaTava.EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(TaTavaDbContext))]
-    partial class TaTavaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210313174803_FirmaUrunOzellik_Table_Modified_And_Detay_Property_Has_Deleted_From_UrunOzellik_Entity")]
+    partial class FirmaUrunOzellik_Table_Modified_And_Detay_Property_Has_Deleted_From_UrunOzellik_Entity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -535,11 +537,9 @@ namespace TaTava.EntityFrameworkCore.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Detay")
+                        .IsRequired()
                         .HasColumnType("nvarchar(500)")
                         .HasMaxLength(500);
-
-                    b.Property<byte>("DetayTipi")
-                        .HasColumnType("tinyint");
 
                     b.Property<int>("FirmaId")
                         .HasColumnType("int");

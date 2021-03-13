@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TaTava.EntityFrameworkCore;
 
 namespace TaTava.EntityFrameworkCore.Migrations
 {
     [DbContext(typeof(TaTavaDbContext))]
-    partial class TaTavaDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210313170625_Detay_Property_Added_Into_TeklifDetay_Entity")]
+    partial class Detay_Property_Added_Into_TeklifDetay_Entity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -534,16 +536,6 @@ namespace TaTava.EntityFrameworkCore.Migrations
                     b.Property<DateTime?>("DeletionTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Detay")
-                        .HasColumnType("nvarchar(500)")
-                        .HasMaxLength(500);
-
-                    b.Property<byte>("DetayTipi")
-                        .HasColumnType("tinyint");
-
-                    b.Property<int>("FirmaId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -553,25 +545,7 @@ namespace TaTava.EntityFrameworkCore.Migrations
                     b.Property<Guid?>("LastModifierUserId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<byte>("OzellikTuru")
-                        .HasColumnType("tinyint");
-
-                    b.Property<int>("UrunId")
-                        .HasColumnType("int");
-
-                    b.Property<short?>("UrunId1")
-                        .HasColumnType("smallint");
-
-                    b.Property<int>("UrunOzellikId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("FirmaId");
-
-                    b.HasIndex("UrunId1");
-
-                    b.HasIndex("UrunOzellikId");
 
                     b.ToTable("FirmaUrunOzellikleri");
                 });
@@ -978,10 +952,18 @@ namespace TaTava.EntityFrameworkCore.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Detay")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
+
                     b.Property<string>("OzellikAdi")
                         .IsRequired()
                         .HasColumnType("nvarchar(75)")
                         .HasMaxLength(75);
+
+                    b.Property<byte>("OzellikTuru")
+                        .HasColumnType("tinyint");
 
                     b.HasKey("Id");
 
@@ -1072,25 +1054,6 @@ namespace TaTava.EntityFrameworkCore.Migrations
                     b.HasOne("TaTava.Firmalar.Sektorler.Sektor", "Sektor")
                         .WithMany("Firmalar")
                         .HasForeignKey("SektorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("TaTava.Firmalar.FirmaUrunOzellikleri.FirmaUrunOzellik", b =>
-                {
-                    b.HasOne("TaTava.Firmalar.Firma", "Firma")
-                        .WithMany()
-                        .HasForeignKey("FirmaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("TaTava.Urunler.Urun", "Urun")
-                        .WithMany()
-                        .HasForeignKey("UrunId1");
-
-                    b.HasOne("TaTava.Urunler.UrunOzellikleri.UrunOzellik", "UrunOzellik")
-                        .WithMany()
-                        .HasForeignKey("UrunOzellikId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

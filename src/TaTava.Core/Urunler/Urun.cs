@@ -29,10 +29,6 @@ namespace TaTava.Urunler
 
         public short SektorId { get; set; }
 
-        #endregion
-
-        #region - Navigation Properties
-
         public ICollection<FirmaUrun> FirmaUrunleri { get; set; }
 
         #endregion
