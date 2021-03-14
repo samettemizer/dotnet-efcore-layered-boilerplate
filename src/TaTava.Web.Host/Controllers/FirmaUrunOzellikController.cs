@@ -7,17 +7,17 @@ using TaTava.Infrastructure;
 
 namespace TaTava.Web.Host.Controllers
 {
-    public class FirmaUrunOzellik : BaseApiController
+    public class FirmaUrunOzellikController : BaseApiController
     {
         private readonly IFirmaUrunOzellikAppService _firmaUrunOzellikAppService;
 
-        public FirmaUrunOzellik(IFirmaUrunOzellikAppService firmaUrunOzellikAppService)
+        public FirmaUrunOzellikController(IFirmaUrunOzellikAppService firmaUrunOzellikAppService)
         {
             _firmaUrunOzellikAppService = firmaUrunOzellikAppService;
         }
 
         [HttpGet]
-        public async Task<ServiceResult<IQueryable<FirmaUrunOzellikListOutputDto>>> Get(GetAllFirmUrunOzellikInput input)
+        public async Task<ServiceResult<IQueryable<FirmaUrunOzellikListOutputDto>>> Get([FromQuery] GetAllFirmUrunOzellikInput input)
         {
             return await _firmaUrunOzellikAppService.FirmaUrunOzellikleri(input);
         }

@@ -24,6 +24,7 @@ using TaTava.Urunler;
 using TaTava.Firmalar;
 using TaTava.Firmalar.Teklifler;
 using TaTava.Firmalar.TeklifDetaylari;
+using TaTava.Firmalar.FirmaUrunOzellikleri;
 
 namespace TaTava.Application.Infrastructure
 {
@@ -47,6 +48,7 @@ namespace TaTava.Application.Infrastructure
             services.AddTransient<IFirmaAppService, FirmaAppService>();
             services.AddTransient<ITeklifAppService, TeklifAppService>();
             services.AddTransient<ITeklifDetayAppService, TeklifDetayAppService>();
+            services.AddTransient<IFirmaUrunOzellikAppService, FirmaUrunOzellikAppService>();
 
 
 

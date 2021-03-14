@@ -20,7 +20,7 @@ namespace TaTava.Firmalar.FirmaUrunOzellikleri
 
         public async Task<ServiceResult<IQueryable<FirmaUrunOzellikListOutputDto>>> FirmaUrunOzellikleri(GetAllFirmUrunOzellikInput input)
         {
-            var firmaUrunOzellikleri = await _firmaUrunOzellikRepository.GetQueryableAsync(firmaUrunOzellik => firmaUrunOzellik.FirmaId == input.FirmaId && firmaUrunOzellik.DetayTipi == DetayTypes.Combo, firmaUrunOzellik => firmaUrunOzellik.UrunOzellik);
+            var firmaUrunOzellikleri = await _firmaUrunOzellikRepository.GetQueryableAsync(firmaUrunOzellik => firmaUrunOzellik.FirmaId == input.FirmaId && firmaUrunOzellik.DetayTipi == DetayTypes.Combo && firmaUrunOzellik.UrunId == input.UrunId, firmaUrunOzellik => firmaUrunOzellik.UrunOzellik);
 
             // Bu şekilde yaparsan veritabanında ki tüm sorguları atabilirsin. Örn: Where, Any, etc.
             // firmaUrunOzellikleri.Where(firmaUrunOzellik => firmaUrunOzellik.FirmaId == input.FirmaId);

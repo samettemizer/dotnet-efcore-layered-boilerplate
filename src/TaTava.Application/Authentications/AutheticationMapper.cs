@@ -66,6 +66,7 @@ namespace TaTava.Mapper.Authorization
                 LastName = tokenClaims.FirstOrDefault(claim => claim.Type == "lastName").Value,
                 Firma = new()
                 {
+                    Id = !string.IsNullOrEmpty(tokenClaims.FirstOrDefault(claim => claim.Type == "firmaId")?.Value) ? Convert.ToInt32(tokenClaims.FirstOrDefault(claim => claim.Type == "firmaId")?.Value) : 0,
                     Unvan = tokenClaims.FirstOrDefault(claim => claim.Type == "adres")?.Value,
                     YetkiliAd = tokenClaims.FirstOrDefault(claim => claim.Type == "yetkiliAd")?.Value,
                     YetkiliSoyad = tokenClaims.FirstOrDefault(claim => claim.Type == "yetkiliSoyad")?.Value,
