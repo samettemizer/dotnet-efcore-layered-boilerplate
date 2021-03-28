@@ -10,5 +10,6 @@ namespace TaTava.Firmalar
     {
         Task<ServiceResult<IQueryable<FirmaOutputDto>>> FirmaListesi();
         Task<ServiceResult<FirmaOutputDto>> FirmeEkle(FirmaInputDto input);
+        Task<ServiceResult<FirmaOutputDto>> FirmaOge(int id);
     }
 }

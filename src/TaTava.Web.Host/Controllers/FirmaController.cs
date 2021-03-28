@@ -21,6 +21,12 @@ namespace TaTava.Web.Host.Controllers
         {
             return await _firmaAppService.FirmaListesi();
         }
+        
+        [HttpGet("{id}")]
+        public async Task<ServiceResult<FirmaOutputDto>> Get(int id)
+        {
+            return await _firmaAppService.FirmaOge(id);
+        }
 
         [HttpPost]
         public async Task<ServiceResult<FirmaOutputDto>> Post(FirmaInputDto input)

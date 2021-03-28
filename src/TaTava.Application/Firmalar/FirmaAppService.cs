@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using TaTava.Authorization.UserAccounts.Dtos;
 using TaTava.Authorization.Users;
 using TaTava.Authorization.Users.Dtos;
@@ -79,6 +80,28 @@ namespace TaTava.Firmalar
             catch (Exception e)
             {
                 return new ServiceResult<FirmaOutputDto>(Status.Error) { Message = string.Format("Kullanıcı kaydı sırasında bir hata oluştu. Sebebi; {0}", e.Message) };
+            }
+        }
+
+        [HttpGet("{id}")]
+        public async Task<ServiceResult<FirmaOutputDto>> FirmaOge(int id)
+        {
+            try
+            {
+                var oge = await _firmaRepository.GetAsync(firma => firma.Id == id);
+                if (oge == null)
+                {
+                    throw new Exception("Yokh ki");
+                }
+                return new ServiceResult<FirmaOutputDto>(Status.Success)
+                {
+                    Message = string.Format(ServiceMessages.RecordFound, "Firma"),
+                    Object = oge.ToFirmaOutputDto()
+                };
+            }
+            catch (Exception e)
+            {
+                return new ServiceResult<FirmaOutputDto>(Status.Error) { Message = string.Format("Hede hude. {0}", e.Message) };
             }
         }
     }

@@ -3,7 +3,7 @@ using TaTava.Application.Shared.Dtos;
 
 namespace TaTava.Firmalar.Dtos
 {
-    public class FirmaInputDto : EntityDto<int>
+    public class FirmaInputDto : EntityDto
     {
         public string Unvan { get; set; }
         public string YetkiliAd { get; set; }
