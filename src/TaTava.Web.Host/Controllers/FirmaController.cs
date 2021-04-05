@@ -17,9 +17,9 @@ namespace TaTava.Web.Host.Controllers
         }
 
         [HttpGet]
-        public async Task<ServiceResult<IQueryable<FirmaOutputDto>>> Get()
+        public async Task<ServiceResult<IQueryable<FirmaOutputDto>>> Get([FromQuery]query query)
         {
-            return await _firmaAppService.FirmaListesi();
+            return await _firmaAppService.FirmaListesi(query);
         }
         
         [HttpGet("{id}")]

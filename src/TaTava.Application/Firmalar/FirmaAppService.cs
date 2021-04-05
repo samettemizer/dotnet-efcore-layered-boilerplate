@@ -25,9 +25,13 @@ namespace TaTava.Firmalar
             _firmaRepository = firmaRepository;
         }
 
-        public async Task<ServiceResult<IQueryable<FirmaOutputDto>>> FirmaListesi()
+        public async Task<ServiceResult<IQueryable<FirmaOutputDto>>> FirmaListesi(query query = null)
         {
-            var firmalar = await _firmaRepository.GetQueryableAsync();
+            var firmalar = await _firmaRepository.GetQueryableAsync(x => 
+                x.Unvan.Contains(query.unvan) && 
+                x.YetkiliSoyad.Contains(query.yetkiliSoyad)
+                // x.Foo.Contains(query.Foo) &&
+            );
 
             return new ServiceResult<IQueryable<FirmaOutputDto>>(Status.Success)
             {
